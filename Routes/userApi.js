@@ -83,6 +83,50 @@ router.post('/signin',function(req,res){
 });
 
 
+/** Create posts protected route */
+//To create a post, the user needs to be authenticated first. A token is sent to post create route. 
+//Pass verifyToken method as the second argument. 
+//In jwt.verify method accepts a token from req.token and same secret key. 
+//In the callback method err, and authData parameters are passed. If there is an error, status 403 is sent back. 
+//Otherwise, a new post is created and the message with authData is sent to the client.
+router.post('/posts', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'secret', (err, authData)=>{
+        if(err){
+            res.sendStatus(403);
+        }else{
+            res.json({
+                msg: "A new post is created",
+                authData
+            });
+        }
+    });
+ });
+
+ /** verifyToken method - this method verifies token */
+//Verify token method is added to authenticate token. 
+//This method accepts, req, res and next parameters. 
+//The request header’s authorization key contains token and is assigned to a constant bearerHeader.
+//Authorization token has a format as bearer <authorizatin_key>. Split the string with space. 
+//Token is assigned to a constant bearerHeader. Assign token to req.token. 
+//next() middleware method is called. If the header is undefined then a 403 status is returned to the client.
+function verifyToken(req, res, next){
+    //Request header with authorization key
+    const bearerHeader = req.headers['authorization']; 
+    //Check if there is  a header
+    if(typeof bearerHeader !== 'undefined'){
+        const bearer = bearerHeader.split(' ');
+        //Get Token arrray by spliting
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        //call next middleware
+        next();
+    }
+    else{
+        res.sendStatus(403);
+    }
+ }
+
+
 // find user by id (for internal user)
 router.get('/find/:id',function(req,res){
     user.findById(req.params.id , function(err,user){
