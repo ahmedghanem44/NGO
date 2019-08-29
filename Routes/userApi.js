@@ -55,7 +55,7 @@ router.post('/signup', function(req,res){
 router.post('/signin',function(req,res){
     // find the user by his/her email
     // callback fundtion will get the result from the findOne if the user email is found in the database
-    user.findOne(req.body.email).then(function(u){
+    user.findOne({email: req.body.email}).then(function(u){
         // compare the password submitted (after hashing) to the database hashed password
         // the callback function will execute and return an error or true after comparison 
         bcrypt.compare(req.body.password,u.password,function(err,isSamePassword){
@@ -68,9 +68,12 @@ router.post('/signin',function(req,res){
                 // the token will be generated using email and id as payload ( cannot understand 'secret')
                 const JWTtoken = jwt.sign({
                     email: u.email,
-                    id : u.id
+                    username : u.userName
                 },
-                'secret');
+                'secret',
+                {
+                    expiresIn: '1m'
+                });
                 // return 200 OK and display message and return the JWT token created
                 return res.status(200).json({success:'JWT has been created' , token: JWTtoken });
             }
