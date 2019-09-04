@@ -14,6 +14,15 @@ router.get('/findAll',function(req,res){
     })
 });
 
+// find all Acitve events ( isActive = true)
+router.get('/findActive',function(req,res){
+    event.find({isActive : true}, function(err,events){
+        if(err) return err;
+        res.json(events);
+    })
+});
+
+
 router.get('/find/:id',function(req,res){
     event.findById(req.params.id,function(err,event){
         if(err) return err;

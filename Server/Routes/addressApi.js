@@ -20,6 +20,14 @@ router.get('/find/:id',function(req,res){
     })
 });
 
+// find by zip using POST
+router.post('/findZip',function(req,res){
+    user.findOne({ zipCode : req.body.zipCode } , function(err,user){
+        if(err) return err;
+        res.json(user);
+    })
+});
+
 router.post('/add',function(req,res){
     address.create(req.body,function(err,address){
         if(err) return err;
@@ -40,5 +48,6 @@ router.put('/update/:id',function(req,res){
         res.json(address);
     })
 });
+
 
 module.exports = router;

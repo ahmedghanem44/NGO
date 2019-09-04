@@ -1,0 +1,42 @@
+
+    <h1>List of Games</h1>
+    <table>
+        <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Street</th>
+            <th>Zip</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Urbanization</th>
+            <th>CMA#</th>
+            <th>isAdmin</th>
+            <th>Password</th>
+        </thead>
+        <tbody>
+            <tr *ngFor ="let user of users">
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td *ngIf="user.street != undefined; else elseBlock">{{user.street}}</td>
+
+                <td *ngIf="user.address != undefined; else elseBlock">{{user.address.zipCode}}</td>
+                <ng-template #elseBlock>
+                    <td>NULL</td>
+                </ng-template>
+                <td *ngIf="user.address != undefined; else elseBlock">{{user.address.city}}</td>
+                <td *ngIf="user.address != undefined; else elseBlock">{{user.address.state}}</td>
+                <td *ngIf="user.address != undefined; else elseBlock">{{user.address.country}}</td>
+                <td *ngIf="user.address != undefined; else elseBlock">{{user.address.urbanization}}</td>
+                <td>{{user.cma}}</td>
+                <td>{{user.isAdmin}}</td>
+                <td>{{user.password}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+

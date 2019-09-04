@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-    eventName : String,
-    dateOfEvent : Date,
-    isActive : Boolean
+    eventName : String, //req
+    // dateOfEvent : Date,
+    isActive : { type: Boolean , default : true}
 });
 
 module.exports = mongoose.model('Event' , eventSchema);

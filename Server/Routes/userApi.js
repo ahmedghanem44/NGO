@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const user = require('../Models/user');
+const add = require('./addressApi');
 
 router.use(bodyParser.urlencoded({extended:true}));
 router.use(bodyParser.json());
@@ -35,10 +36,14 @@ router.post('/signup', function(req,res){
                 lastName : req.body.lastName,
                 email : req.body.email,
                 phone : req.body.phone,
+                street : req.body.street,
+                address : req.body.address,
                 cma : req.body.cma,
                 isAdmin : req.body.isAdmin,
-                userName : req.body.userName,
+                // userName : req.body.userName,
                 password : hashedPassword,
+                cart : req.body.cart,
+                donations : req.body.donations
             });
             // save the newly created user and (then) return 200 OK status along with the message to confirm success
             u.save().then(function(result){
@@ -133,6 +138,22 @@ function verifyToken(req, res, next){
 // find user by id (for internal user)
 router.get('/find/:id',function(req,res){
     user.findById(req.params.id , function(err,user){
+        if(err) return err;
+        res.json(user);
+    })
+});
+
+// find by email using POST
+router.post('/findEmail',function(req,res){
+    user.findOne({ email : req.body.email } , function(err,user){
+        if(err) return err;
+        res.json(user);
+    })
+});
+
+// find by email using GET
+router.get('/find/:email',function(req,res){
+    user.findOne( req.body.email, function(err,user){
         if(err) return err;
         res.json(user);
     })

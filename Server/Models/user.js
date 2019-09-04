@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 // const cartType = require('./cart');
 const donation =require('./donation');
+const add = require('./address');
 
 const userSchema = new mongoose.Schema({
     firstName : String, //req
@@ -10,11 +11,11 @@ const userSchema = new mongoose.Schema({
     phone : String,
     street : String,
     address : {
-        type : objectId,
+        type : ObjectId,
         ref : add
     },
     cma : Number,
-    isAdmin : Boolean, //req (role)
+    isAdmin : Boolean, //req
     // userName : String,
     password : String, // req
     cart : [{
