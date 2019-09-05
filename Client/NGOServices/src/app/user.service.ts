@@ -29,7 +29,7 @@ export class UserService {
   //   return this.http.post<IUser>(this.url +'/findEmail',user.email);
   // }
 
-  saveUser(user:IUser): Observable<IUser>{
+  saveUser(user: IUser): Observable<IUser>{ // changed from IUser to any 
     return this.http.post<IUser>(this.url + '/signup' , user);
   }
 
