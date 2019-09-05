@@ -5,9 +5,6 @@
         <p>Fields marked with * are required</p>
     </div>
 
-
-
-
     <label for="firstName"><b>* First Name</b> </label><br>
     <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,7 +66,7 @@
     <br>
 
     <label for="confirmPassword"><b>* Confirm Password</b></label><br>
-    <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" 
+    <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"
         placeholder="Reenter Password">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.confirmPassword?.valid && (signupForm.controls.confirmPassword?.dirty || 
@@ -77,7 +74,7 @@
         <small [hidden]="!signupForm.controls.confirmPassword.errors.required" class="required">
             <font color="red"><b>Password Confirmation is required </b></font>
         </small>
-    
+
         <small [hidden]="!signupForm.controls.confirmPassword.errors?.MatchPassword">
             <font color="red"><b>Password mismatch</b></font>
         </small>
@@ -88,7 +85,7 @@
             </small>
     </span> -->
 
-    <br> 
+    <br>
 
     <label for="phone"><b>* Phone</b></label><br>
     <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Enter Phone Number">
@@ -167,7 +164,7 @@
     <input type="text" class="form-control" name="urbanization" formControlName="urbanization"
         placeholder="For International Address">
 
-        <br>
+    <br>
 
     <label for="isAdmin"><b>Administrator </b> </label>
     <input type="checkbox" class="form-control" name="isAdmin" formControlName="isAdmin">
