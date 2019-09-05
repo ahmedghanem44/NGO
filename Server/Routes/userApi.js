@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const user = require('../Models/user');
-const add = require('./addressApi');
+// const add = require('./addressApi');
 
 router.use(bodyParser.urlencoded({extended:true}));
 router.use(bodyParser.json());
@@ -78,11 +78,12 @@ router.post('/signin',function(req,res){
                 // the token will be generated using email and id as payload ( cannot understand 'secret')
                 const JWTtoken = jwt.sign({
                     email: u.email,
-                    username : u.userName
+                    lastName : u.lastName,
+                    isAdmin : u.isAdmin
                 },
                 'secret',
                 {
-                    expiresIn: '1m'
+                    expiresIn: '10m'
                 });
                 // return 200 OK and display message and return the JWT token created
                 return res.status(200).json({success:'JWT has been created' , token: JWTtoken });

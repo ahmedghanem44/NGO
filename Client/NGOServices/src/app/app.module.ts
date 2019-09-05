@@ -9,12 +9,15 @@ import { UserListComponent } from './user-list/user-list.component';
 import { EventService } from './event.service';
 import { SignupFromComponent } from './signup-from/signup-from.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { DonationService } from './donation.service';
+import { EventsForDonationComponent } from './events-for-donation/events-for-donation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    SignupFromComponent
+    SignupFromComponent,
+    EventsForDonationComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     // FormBuilder
   ],
-  providers: [UserService,EventService],
+  providers: [UserService,EventService,DonationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

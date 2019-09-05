@@ -1,0 +1,15 @@
+<h1>List of active event</h1>
+
+
+    <span *ngFor="let event of events">
+        <br><br>
+        <span *ngIf="event.isActive ; else elseBlock">
+            <button class="activebtn">{{event.eventName}}</button>
+            <br><br>
+        </span>
+        <ng-template #elseBlock>
+                <button class="inactivebtn" disabled="true">{{event.eventName}}</button>
+                <br><br>
+        </ng-template>
+    <span>
+
