@@ -5,8 +5,8 @@
         <p>Fields marked with * are required</p>
     </div>
 
-    <label for="email"><b>* Email</b> </label><br>
-    <input type="text" class="form-control" name="email" formControlName="email" placeholder="Enter Your Email">
+    <label for="email"><b>* Email</b> </label>
+    &nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="email" formControlName="email" placeholder="Enter Your Email">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signinForm.controls.email?.valid && (signinForm.controls.email?.dirty || 
                  signinForm.controls.email?.touched)">
@@ -17,8 +17,8 @@
 
     <br>
 
-    <label for="password"><b>* Password</b></label><br>
-    <input type="text" class="form-control" name="password" formControlName="password"
+    <label for="password"><b>* Password</b></label>
+    &nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="password" formControlName="password"
         placeholder="Enter Your Password">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signinForm.controls.password?.valid && (signinForm.controls.password?.dirty || 
@@ -27,6 +27,8 @@
             <font color="red"><b>Password is required </b></font>
         </small>
     </span>
+    <br>
+    <b>&nbsp;&nbsp;&nbsp;Do not have and account ? No Problem Click  <button routerLink="/signup" class="regularbtn">Here</button>  to create a new account</b>
 
     <br><br>
 

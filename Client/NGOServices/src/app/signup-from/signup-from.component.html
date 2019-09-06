@@ -5,8 +5,8 @@
         <p>Fields marked with * are required</p>
     </div>
 
-    <label for="firstName"><b>* First Name</b> </label><br>
-    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name">
+    <label for="firstName" class="twidth"><b>* First Name</b> </label>
+    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name" class="twidth">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.firstName?.valid && (signupForm.controls.firstName?.dirty || 
                 signupForm.controls.firstName?.touched)">
@@ -17,7 +17,7 @@
 
     <br>
 
-    <label for="lastName"><b>* Last Name</b></label><br>
+    <label for="lastName"><b>* Last Name</b></label>
     <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Enter Last Name">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.lastName?.valid && (signupForm.controls.lastName?.dirty || 
@@ -28,7 +28,7 @@
     </span>
     <br>
 
-    <label for="cma"><b>* CMA Number</b></label><br>
+    <label for="cma"><b>* CMA Number</b></label>
     <input type="text" class="form-control" name="cma" formControlName="cma" placeholder="Enter CMA Number">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.cma?.valid && (signupForm.controls.cma?.dirty || 
@@ -40,7 +40,7 @@
 
     <br>
 
-    <label for="email"><b>* Email</b></label><br>
+    <label for="email"><b>* Email</b></label>
     <input type="email" class="form-control" name="email" formControlName="email" placeholder="Enter Valid Email">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.email?.valid && (signupForm.controls.email?.dirty || 
@@ -52,7 +52,7 @@
 
     <br>
 
-    <label for="password"><b>* Password</b></label><br>
+    <label for="password"><b>* Password</b></label>
     <input type="password" class="form-control" name="password" formControlName="password"
         placeholder="Enter Your Password">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,7 +65,7 @@
 
     <br>
 
-    <label for="confirmPassword"><b>* Confirm Password</b></label><br>
+    <label for="confirmPassword"><b>* Confirm Password</b></label>
     <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"
         placeholder="Reenter Password">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -87,7 +87,7 @@
 
     <br>
 
-    <label for="phone"><b>* Phone</b></label><br>
+    <label for="phone"><b>* Phone</b></label>
     <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Enter Phone Number">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.phone?.valid && (signupForm.controls.phone?.dirty || 
@@ -99,7 +99,7 @@
 
     <br>
 
-    <label for="street"><b>* Address</b></label><br>
+    <label for="street"><b>* Address</b></label>
     <input type="text" class="form-control" name="street" formControlName="street" placeholder="Enter Street">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.street?.valid && (signupForm.controls.street?.dirty || 
@@ -112,7 +112,7 @@
     <br>
 
 
-    <label for="zip"><b>* Zip Code</b></label><br>
+    <label for="zip"><b>* Zip Code</b></label>
     <input type="text" class="form-control" name="zip" formControlName="zipCode" placeholder="Enter Zip Code">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.zipCode?.valid && (signupForm.controls.zipCode?.dirty || 
@@ -124,7 +124,7 @@
 
     <br>
 
-    <label for="city"><b>* City</b></label><br>
+    <label for="city"><b>* City</b></label>
     <input type="text" class="form-control" name="city" formControlName="city" placeholder="Enter City">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.city?.valid && (signupForm.controls.city?.dirty || 
@@ -136,7 +136,7 @@
 
     <br>
 
-    <label for="state"><b>* State</b></label><br>
+    <label for="state"><b>* State</b></label>
     <input type="text" class="form-control" name="state" formControlName="state" placeholder="Enter State">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.state?.valid && (signupForm.controls.state?.dirty || 
@@ -148,7 +148,7 @@
 
     <br>
 
-    <label for="country"><b>* Country</b></label><br>
+    <label for="country"><b>* Country</b></label>
     <input type="text" class="form-control" name="country" formControlName="country" placeholder="Enter Country">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.country?.valid && (signupForm.controls.country?.dirty || 
@@ -160,7 +160,7 @@
 
     <br>
 
-    <label for="urbanization"><b>Urbanization</b></label><br>
+    <label for="urbanization"><b>Urbanization</b></label>
     <input type="text" class="form-control" name="urbanization" formControlName="urbanization"
         placeholder="For International Address">
 
