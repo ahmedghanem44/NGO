@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IUser } from '../UserInterface';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
 
   public isAdmin : Boolean;
-  public signinForm : FormGroup
+  public signinForm : FormGroup;
 
   constructor(private userService:UserService, private fb :FormBuilder, private router: Router) { }
 
@@ -27,10 +28,10 @@ export class SigninComponent implements OnInit {
         response => {
           this.isAdmin = response.isAdmin;
           localStorage.setItem('token', response.token);
+          localStorage.setItem('name',response.firstName+" "+response.lastName);
+          localStorage.setItem('user', response.user);
           console.log(response);
-          this.router.navigate(['/home']);
-          // console.log("res isAdmin: "+response.isAdmin);
-          // console.log("local: "+this.isAdmin)  
+          this.router.navigate(['/home'])
       },
       error => {
         console.log("Failed to sign in ");

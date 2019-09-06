@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../event.service';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-events-for-donation',
@@ -11,14 +14,19 @@ export class EventsForDonationComponent implements OnInit {
   public events = [];
   public errorMsg : string ;
 
-  constructor(private eventService : EventService) { }
+  constructor(private eventService : EventService, private userService: UserService,
+                private router : Router){ }
 
   ngOnInit() {
-    this.eventService.getAllEvents().subscribe(
-      (activeEvents) => this.events = activeEvents,
-      (error) => this.errorMsg = error,
-      () => console.log("list of active events loaded successfully")
-    );
+    if(this.userService.isSignedIn()){
+      this.eventService.getAllEvents().subscribe(
+        (activeEvents) => this.events = activeEvents,
+        (error) => this.errorMsg = error,
+        () => console.log("list of active events loaded successfully")
+      );
+    }else{
+      this.router.navigate(['/signin']);
+    }
   }
 
 }

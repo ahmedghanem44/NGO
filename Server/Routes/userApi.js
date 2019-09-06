@@ -85,7 +85,8 @@ router.post('/signin',function(req,res){
                 });
                 let checkAdmin = u.isAdmin;
                 // return 200 OK and display message and return the JWT token created
-                return res.status(200).json({success:'JWT has been created' , token: JWTtoken , isAdmin: checkAdmin });
+                return res.status(200).json({success:'JWT has been created' , token: JWTtoken , isAdmin: checkAdmin,
+                                    firstName: u.firstName,lastName: u.lastName , user : u });
             }else if(!same){
                 return res.status(401).json({failed: u.password});
             }
@@ -157,6 +158,7 @@ router.post('/findEmail',function(req,res){
         res.json(user);
     })
 });
+
 
 // find by email using GET
 router.get('/find/:email',function(req,res){

@@ -48,8 +48,9 @@ export class UserService {
   }
 
   signout(){
-    localStorage.removeItem('token')
-    this.router.navigate(['/home'])
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    this.router.navigate(['/home']);
   }
 
   isSignedIn() {
@@ -58,6 +59,14 @@ export class UserService {
     }else{
       return false;
     } 
+  }
+
+  getUserName():any {
+    return localStorage.getItem('name');
+  }
+
+  getUser():any{
+    return localStorage.getItem('user');
   }
 
 
