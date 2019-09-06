@@ -11,13 +11,17 @@ import { SignupFromComponent } from './signup-from/signup-from.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { DonationService } from './donation.service';
 import { EventsForDonationComponent } from './events-for-donation/events-for-donation.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     SignupFromComponent,
-    EventsForDonationComponent
+    EventsForDonationComponent,
+    UserProfileComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,

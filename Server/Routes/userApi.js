@@ -68,25 +68,26 @@ router.post('/signin',function(req,res){
     user.findOne({email: req.body.email}).then(function(u){
         // compare the password submitted (after hashing) to the database hashed password
         // the callback function will execute and return an error or true after comparison 
-        bcrypt.compare(req.body.password,u.password,function(err,isSamePassword){
+        bcrypt.compare(req.body.password,u.password,function(err,same){
             if(err){
                 // if there is error while comapring return "Unauthorized access 401" and display the message
                 return res.status(401).json({incorrect :'The password does not match the database'});
             }
             // if(isSamePasswod) ,which means the password matches, generate a new token
-            if(isSamePassword){
+            if(same){
                 // the token will be generated using email and id as payload ( cannot understand 'secret')
                 const JWTtoken = jwt.sign({
-                    email: u.email,
-                    lastName : u.lastName,
-                    isAdmin : u.isAdmin
+                    email: u.email
                 },
                 'secret',
                 {
                     expiresIn: '10m'
                 });
+                let checkAdmin = u.isAdmin;
                 // return 200 OK and display message and return the JWT token created
-                return res.status(200).json({success:'JWT has been created' , token: JWTtoken });
+                return res.status(200).json({success:'JWT has been created' , token: JWTtoken , isAdmin: checkAdmin });
+            }else if(!same){
+                return res.status(401).json({failed: u.password});
             }
             // in case the password does not match (isSamePassword = false) or no error (!err) occured while comparison 
             return res.status(401).json({failed: 'Unauthorized Access'});

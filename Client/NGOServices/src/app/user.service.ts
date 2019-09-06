@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient , HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {IUser} from './UserInterface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class UserService {
 
   private url : string = "http://localhost:5000/users";
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient, private router: Router) { }
 
   getAllUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(this.url + '/findAll');
@@ -29,7 +30,7 @@ export class UserService {
   //   return this.http.post<IUser>(this.url +'/findEmail',user.email);
   // }
 
-  saveUser(user: IUser): Observable<IUser>{ // changed from IUser to any 
+  signup(user: IUser): Observable<IUser>{ // changed from IUser to any 
     return this.http.post<IUser>(this.url + '/signup' , user);
   }
 
@@ -40,6 +41,23 @@ export class UserService {
 
   removeUser(id:string):Observable<IUser>{
     return this.http.delete<IUser>(this.url+ '/delete/' + id);
+  }
+
+  singin(user){
+   return this.http.post<any>(this.url+'/signin' , user);
+  }
+
+  signout(){
+    localStorage.removeItem('token')
+    this.router.navigate(['/home'])
+  }
+
+  isSignedIn() {
+    if (localStorage.getItem('token') != null){
+      return true;
+    }else{
+      return false;
+    } 
   }
 
 

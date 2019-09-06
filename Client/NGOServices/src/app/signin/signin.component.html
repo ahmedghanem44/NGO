@@ -1,0 +1,37 @@
+<form [formGroup]="signinForm" (ngSubmit)="onSubmit()" style="border:1px solid #ccc">
+    <div class="container">
+        <h1>Signin</h1>
+        <p>Please fill in this form to signin.</p>
+        <p>Fields marked with * are required</p>
+    </div>
+
+    <label for="email"><b>* Email</b> </label><br>
+    <input type="text" class="form-control" name="email" formControlName="email" placeholder="Enter Your Email">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span *ngIf="!signinForm.controls.email?.valid && (signinForm.controls.email?.dirty || 
+                 signinForm.controls.email?.touched)">
+        <small [hidden]="!signinForm.controls.email.errors.required" class="required">
+            <font color="red"><b>Email is required </b></font>
+        </small>
+    </span>
+
+    <br>
+
+    <label for="password"><b>* Password</b></label><br>
+    <input type="text" class="form-control" name="password" formControlName="password"
+        placeholder="Enter Your Password">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span *ngIf="!signinForm.controls.password?.valid && (signinForm.controls.password?.dirty || 
+                signinForm.controls.password?.touched)">
+        <small [hidden]="!signinForm.controls.password.errors.required" class="required">
+            <font color="red"><b>Password is required </b></font>
+        </small>
+    </span>
+
+    <br><br>
+
+    <button [disabled]="!signinForm.valid" type="submit" class="signupbtn">Signin</button>
+    <button type="reset" class="cancelbtn">Reset</button>
+
+    <!-- &nbsp;&#160;  -->
+</form>

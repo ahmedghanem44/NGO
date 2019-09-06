@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 
   app.use('/donations',donations);
 // app.use('/cart',carts);
-app.use('/address',addresses);
+// app.use('/address',addresses);
 app.use('/events',events);
 app.use('/users',users);
 

@@ -1,0 +1,181 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()" style="border:1px solid #ccc">
+        <div class="container">
+            <h1>Sign Up</h1>
+            <p>Please fill in this form to create an account.</p>
+            <p>Fields marked with * are required</p>
+        </div>
+    
+        <label for="firstName"><b>* First Name</b> </label><br>
+        <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.firstName?.valid && (signupForm.controls.firstName?.dirty || 
+                    signupForm.controls.firstName?.touched)">
+            <small [hidden]="!signupForm.controls.firstName.errors.required" class="required">
+                <font color="red"><b>First Name is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="lastName"><b>* Last Name</b></label><br>
+        <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="Enter Last Name">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.lastName?.valid && (signupForm.controls.lastName?.dirty || 
+                        signupForm.controls.lastName?.touched)">
+            <small [hidden]="!signupForm.controls.lastName.errors.required" class="required">
+                <font color="red"><b>* Last Name is required </b></font>
+            </small>
+        </span>
+        <br>
+    
+        <label for="cma"><b>* CMA Number</b></label><br>
+        <input type="text" class="form-control" name="cma" formControlName="cma" placeholder="Enter CMA Number">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.cma?.valid && (signupForm.controls.cma?.dirty || 
+                    signupForm.controls.cma?.touched)">
+            <small [hidden]="!signupForm.controls.cma.errors.required" class="required">
+                <font color="red"><b>CMA Number is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="email"><b>* Email</b></label><br>
+        <input type="email" class="form-control" name="email" formControlName="email" placeholder="Enter Valid Email">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.email?.valid && (signupForm.controls.email?.dirty || 
+                    signupForm.controls.email?.touched)">
+            <small [hidden]="!signupForm.controls.email.errors.required" class="required">
+                <font color="red"><b>Email is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="password"><b>* Password</b></label><br>
+        <input type="password" class="form-control" name="password" formControlName="password"
+            placeholder="Enter Your Password">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.password?.valid && (signupForm.controls.password?.dirty || 
+                        signupForm.controls.password?.touched)">
+            <small [hidden]="!signupForm.controls.password.errors.required" class="required">
+                <font color="red"><b>Password is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="confirmPassword"><b>* Confirm Password</b></label><br>
+        <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword"
+            placeholder="Reenter Password">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.confirmPassword?.valid && (signupForm.controls.confirmPassword?.dirty || 
+                        signupForm.controls.confirmPassword?.touched)">
+            <small [hidden]="!signupForm.controls.confirmPassword.errors.required" class="required">
+                <font color="red"><b>Password Confirmation is required </b></font>
+            </small>
+    
+            <small [hidden]="!signupForm.controls.confirmPassword.errors?.MatchPassword">
+                <font color="red"><b>Password mismatch</b></font>
+            </small>
+        </span>
+        <!-- <span *ngIf="password !== confirmPassword">
+                <small [hidden]="password !== confirmPassword">
+                        <font color="red"><b>Password does not match </b></font>
+                </small>
+        </span> -->
+    
+        <br>
+    
+        <label for="phone"><b>* Phone</b></label><br>
+        <input type="text" class="form-control" name="phone" formControlName="phone" placeholder="Enter Phone Number">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.phone?.valid && (signupForm.controls.phone?.dirty || 
+                    signupForm.controls.phone?.touched)">
+            <small [hidden]="!signupForm.controls.phone.errors.required" class="required">
+                <font color="red"><b>Phone Number is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="street"><b>* Address</b></label><br>
+        <input type="text" class="form-control" name="street" formControlName="street" placeholder="Enter Street">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.street?.valid && (signupForm.controls.street?.dirty || 
+                    signupForm.controls.street?.touched)">
+            <small [hidden]="!signupForm.controls.street.errors.required" class="required">
+                <font color="red"><b>Street Address is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+    
+        <label for="zip"><b>* Zip Code</b></label><br>
+        <input type="text" class="form-control" name="zip" formControlName="zipCode" placeholder="Enter Zip Code">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.zipCode?.valid && (signupForm.controls.zipCode?.dirty || 
+                    signupForm.controls.zipCode?.touched)">
+            <small [hidden]="!signupForm.controls.zipCode.errors.required" class="required">
+                <font color="red"><b>Zip Code is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="city"><b>* City</b></label><br>
+        <input type="text" class="form-control" name="city" formControlName="city" placeholder="Enter City">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.city?.valid && (signupForm.controls.city?.dirty || 
+                    signupForm.controls.city?.touched)">
+            <small [hidden]="!signupForm.controls.city.errors.required" class="required">
+                <font color="red"><b>City is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="state"><b>* State</b></label><br>
+        <input type="text" class="form-control" name="state" formControlName="state" placeholder="Enter State">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.state?.valid && (signupForm.controls.state?.dirty || 
+                    signupForm.controls.state?.touched)">
+            <small [hidden]="!signupForm.controls.state.errors.required" class="required">
+                <font color="red"><b>State is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="country"><b>* Country</b></label><br>
+        <input type="text" class="form-control" name="country" formControlName="country" placeholder="Enter Country">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span *ngIf="!signupForm.controls.country?.valid && (signupForm.controls.country?.dirty || 
+                    signupForm.controls.country?.touched)">
+            <small [hidden]="!signupForm.controls.country.errors.required" class="required">
+                <font color="red"><b>Country is required </b></font>
+            </small>
+        </span>
+    
+        <br>
+    
+        <label for="urbanization"><b>Urbanization</b></label><br>
+        <input type="text" class="form-control" name="urbanization" formControlName="urbanization"
+            placeholder="For International Address">
+    
+        <br>
+    
+        <label for="isAdmin"><b>Administrator </b> </label>
+        <input type="checkbox" class="form-control" name="isAdmin" formControlName="isAdmin">
+    
+        <br><br>
+    
+        <button [disabled]="!signupForm.valid" type="submit" class="signupbtn" >Sign Up</button>
+        <button type="reset" class="cancelbtn">Reset</button>
+    
+        <!-- &nbsp;&#160;  -->
+    </form>
+    
+    <!-- ng-model="checkboxModel.value2"
+               ng-true-value="'true'" ng-false-value="'false'" -->

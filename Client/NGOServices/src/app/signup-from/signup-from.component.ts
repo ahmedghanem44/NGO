@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ReactiveFormsModule, FormControl,FormGroup,Validators,FormBuilder} from '@angular/forms';
 import { UserService } from '../user.service';
 import { PasswordValidation } from './PasswordValidator';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class SignupFromComponent implements OnInit {
   //   isAdmin : new FormControl(true)
   // });
 
-  constructor(private fb:FormBuilder , private userService : UserService) { }
+  constructor(private fb:FormBuilder , private userService : UserService , private router :Router) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -55,10 +56,11 @@ export class SignupFromComponent implements OnInit {
   };
 
   onSubmit(){
-    this.userService.saveUser(this.signupForm.value).subscribe(
+    this.userService.signup(this.signupForm.value).subscribe(
       response => console.log("Sign up succeed"),
       error => console.log("Failed to signup the new user")
     );
+    this.router.navigate(['/home']);
   }
   
 

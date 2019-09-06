@@ -1,53 +1,53 @@
-const express = require('express');
-const router = express.Router();
-const bodyParser = require('body-parser');
-const address = require('../Models/address');
+// const express = require('express');
+// const router = express.Router();
+// const bodyParser = require('body-parser');
+// const address = require('../Models/address');
 
-router.use(bodyParser.urlencoded({extended:true}));
-router.use(bodyParser.json());
+// router.use(bodyParser.urlencoded({extended:true}));
+// router.use(bodyParser.json());
 
-router.get('/findAll',function(req,res){
-    address.find(function(err,addresses){
-        if(err) return err;
-        res.json(addresses);
-    })
-});
+// router.get('/findAll',function(req,res){
+//     address.find(function(err,addresses){
+//         if(err) return err;
+//         res.json(addresses);
+//     })
+// });
 
-router.get('/find/:id',function(req,res){
-    address.findById(req.params.id,function(err,address){
-        if(err) return err;
-        res.json(address);
-    })
-});
+// router.get('/find/:id',function(req,res){
+//     address.findById(req.params.id,function(err,address){
+//         if(err) return err;
+//         res.json(address);
+//     })
+// });
 
-// find by zip using POST
-router.post('/findZip',function(req,res){
-    user.findOne({ zipCode : req.body.zipCode } , function(err,user){
-        if(err) return err;
-        res.json(user);
-    })
-});
+// // find by zip using POST
+// router.post('/findZip',function(req,res){
+//     user.findOne({ zipCode : req.body.zipCode } , function(err,user){
+//         if(err) return err;
+//         res.json(user);
+//     })
+// });
 
-router.post('/add',function(req,res){
-    address.create(req.body,function(err,address){
-        if(err) return err;
-        res.json(address);
-    })
-});
+// router.post('/add',function(req,res){
+//     address.create(req.body,function(err,address){
+//         if(err) return err;
+//         res.json(address);
+//     })
+// });
 
-router.delete('/delete/:id',function(req,res){
-    address.findByIdAndRemove(req.params.id,function(err,address){
-        if(err) return err;
-        res.json(address);
-    })
-});
+// router.delete('/delete/:id',function(req,res){
+//     address.findByIdAndRemove(req.params.id,function(err,address){
+//         if(err) return err;
+//         res.json(address);
+//     })
+// });
 
-router.put('/update/:id',function(req,res){
-    address.findByIdAndUpdate(req.params.id , req.body,function(err,address){
-        if(err) return err;
-        res.json(address);
-    })
-});
+// router.put('/update/:id',function(req,res){
+//     address.findByIdAndUpdate(req.params.id , req.body,function(err,address){
+//         if(err) return err;
+//         res.json(address);
+//     })
+// });
 
 
-module.exports = router;
+// module.exports = router;
