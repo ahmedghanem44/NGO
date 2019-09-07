@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, AfterViewChecked, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../event.service';
 
@@ -11,6 +11,7 @@ export class EventMngComponent implements OnInit,AfterViewInit {
 
   public events = [];
   public errorMsg;
+  public eventToActivate;
 
   constructor(private eventService: EventService, private router: Router) { }
 
@@ -36,6 +37,9 @@ export class EventMngComponent implements OnInit,AfterViewInit {
   ngAfterViewInit() {
     this.loadPage();
   }
+  // ngOnChanges() {
+  //   this.loadPage();
+  // }
 
   onSelect(id){
     this.eventService.removeEvent(id).subscribe(
@@ -51,4 +55,36 @@ export class EventMngComponent implements OnInit,AfterViewInit {
       );
   }
 
+  setStatus(id){
+    this.eventService.getEventById(id).subscribe(
+      (data)=> this.eventToActivate = data,
+      // console.log("updated: " + data.isActive);
+      (error) => {
+        this.errorMsg = error;
+        this.router.navigate(['/signin']);
+      },
+      () => console.log("GOT : " + this.eventToActivate.eventName)
+    );
+    setTimeout(() => {
+      let setvalue:boolean = true;
+      if(this.eventToActivate.isActive){
+        setvalue = false;
+      }else{
+        setvalue = true;
+      }
+      this.eventService.updateEvent(id,{
+        eventName: this.eventToActivate.eventName,
+        isActive: setvalue
+      }).subscribe(
+        (data)=> this.eventToActivate = data,
+      // console.log("updated: " + data.isActive);
+      (error) => {
+        this.errorMsg = error;
+        this.router.navigate(['/signin']);
+      },
+      () => console.log("GOT : " + this.eventToActivate)
+      )
+    },100);
+    this.loadPage();   
+  }
 }

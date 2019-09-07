@@ -94,6 +94,10 @@ import { EditEventComponent } from './edit-event/edit-event.component';
         component:HomeInComponent
       },
       {
+        path: 'editevent', // nemo
+        component:EditEventComponent
+      },
+      {
         path: 'user_mng',
         component: UserMngComponent
       },

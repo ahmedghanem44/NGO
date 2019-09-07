@@ -20,14 +20,14 @@
                     <ng-template #activeBlock>
                         <td>Inactive</td>
                     </ng-template>
-                    <td><button routerLink="/add_event" [queryParams]="{id: event._id}"
+                    <td><button routerLink="/editevent" [queryParams]="{id: event._id}"
                             routerLinkActive="active">Edit</button></td>
                     <td><button (click)="onSelect(event._id)">Remove</button></td>
-                    <td *ngIf="event.isActive ; else activeBtn">
-                        <button (click)="onSelect(event._id)">Activate</button>
+                    <td *ngIf="!event.isActive ; else activeBtn">
+                        <button (click)="setStatus(event._id)">Activate</button>
                     </td>
                     <ng-template #activeBtn>
-                           <td><button (click)="onSelect(event._id)">InActivate</button></td> 
+                           <td><button (click)="setStatus(event._id)">InActivate</button></td> 
                     </ng-template>
                 </tr>
             </tbody>

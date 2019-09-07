@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { EventService } from '../event.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-event',
@@ -11,57 +11,56 @@ import { Router } from '@angular/router';
 export class EditEventComponent implements OnInit {
 
   public eventForm = new FormGroup({
-    eventName : new FormControl(''),
-    isActive : new FormControl('')
+    eventName : new FormControl(),
+    isActive : new FormControl()
   });
-public event;
-
+  public event;
+  public id;
   public errorMsg;
+  public active;
   
-  constructor(private eventService: EventService, private fb :FormBuilder, private router: Router) { }
+  constructor(private eventService: EventService, private fb :FormBuilder, private router: Router,
+                private activatedRoute : ActivatedRoute) { }
 
   ngOnInit() {
-    if (localStorage.getItem('token') != null){
     this.getTheEvent();
-    setTimeout (() => {
-      this.eventForm = this.fb.group({
-        eventName : [this.user.firstName, Validators.required],
-        isAdmin : [this.admin]
-  
-      },{
-        validator: PasswordValidation.MatchPassword // validation method
-      })
-   }, 0);
-  }else{
-    this.router.navigate(['/signin']);
   }
 
+  getTheEvent() {
+    if (localStorage.getItem('token') != null) {
+      this.id = this.activatedRoute.snapshot.queryParams["id"] || 0;
+      console.log(this.id);
+      this.eventService.getEventById(this.id).subscribe(
+        data => {
+          this.event = data;
+          console.log(data);
+          if (this.event.isActive) {
+            this.active = true;
+          } else {
+            this.active = false;
+          }
+        },
+        error => this.errorMsg = error,
+        () => console.log("DONE")
+      )
+      setTimeout(() => {
+        this.eventForm = this.fb.group({
+          eventName: [this.event.eventName, Validators.required],
+          isActive: [this.active]
+        })
+      }, 100);
+    } else {
+      this.router.navigate(['/signin']);
+    }
   }
 
-  getTheEvent(){
-    this.id = this.activatedRoute.snapshot.queryParams["id"]||0;
-    console.log(this.id);
-    this.userService.getUserById(this.id).subscribe(
-      data => {
-       this.user = data ;
-       if(this.user.isAdmin){
-         this.admin = true;
-       }else{
-         this.admin = false;
-       }
-       console.log(this.user.cma);
-     },
-     error => this.errorMsg = error,
-     ()=> console.log("DONE")
-   )
-  }
 
   onSubmit(){
-    this.userService.updateUser(this.id,this.profileForm.value).subscribe(
-      response => console.log("Editing user profile succeed"),
-      error => console.log("Failed to edit the user profile")
+    this.eventService.updateEvent(this.id,this.eventForm.value).subscribe(
+      response => console.log("Editing event succeed"),
+      error => console.log("Failed to edit the event")
     );
-    this.router.navigate(['/user_mng']);
+    this.router.navigate(['/event_mng']);
   }
 
 
