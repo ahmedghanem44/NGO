@@ -1,27 +1,37 @@
-<!-- <app-nav-bar></app-nav-bar> -->
-<div class="container">
-    <h1>Event Management</h1>
-</div>
-
-<div>
-<h2>List of Events</h2>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Is active</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- <tr *ngFor="let event of events">
-            <td>{{event.name}}</td>
-            <td>{{event.isActive}}</td>
-            </tr> -->
-        <tr>
-            <td>Run for orphans</td>
-            <td>True</td>
-        </tr>    
-        </tbody>
-</table>
-</div>
-<button routerLink="/add_event">Add Event</button>
+<body align="center">
+    <div class="container">
+        <h1>Event Management</h1>
+        <p></p>
+        <h2>List of Events</h2>
+        <table class="table table-hover" align="center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Remove</th>
+                    <th>Activate/Inactivate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events">
+                    <td>{{event.eventName}}</td>
+                    <td *ngIf="event.isActive ; else activeBlock">Active</td>
+                    <ng-template #activeBlock>
+                        <td>Inactive</td>
+                    </ng-template>
+                    <td><button routerLink="/add_event" [queryParams]="{id: event._id}"
+                            routerLinkActive="active">Edit</button></td>
+                    <td><button (click)="onSelect(event._id)">Remove</button></td>
+                    <td *ngIf="event.isActive ; else activeBtn">
+                        <button (click)="onSelect(event._id)">Activate</button>
+                    </td>
+                    <ng-template #activeBtn>
+                           <td><button (click)="onSelect(event._id)">InActivate</button></td> 
+                    </ng-template>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button routerLink="/add_event" class="signupbtn">Add Event</button>
+</body>

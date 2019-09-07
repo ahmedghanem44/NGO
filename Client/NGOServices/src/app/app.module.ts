@@ -31,6 +31,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UserMngComponent } from './user-mng/user-mng.component';
 import { HomeInComponent } from './home-in/home-in.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 
 
@@ -59,7 +60,8 @@ import { HomeInComponent } from './home-in/home-in.component';
     UserHomeComponent,
     ListOfEventsComponent,
     LoginComponent,
-    HomeInComponent
+    HomeInComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
