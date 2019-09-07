@@ -5,10 +5,10 @@ const add = require('./address');
 const ev = require('./event');
 
 const donationSchema = new mongoose.Schema({
-    // user : {
-    //     type : objectId,
-    //     ref : user
-    // },
+    user : {
+        type : objectId,
+        ref : user
+    },
     event : {
         type : objectId,
         ref : ev

@@ -10,7 +10,7 @@ router.get('/findAll',function(req,res){
     donation.find(function(err,donations){
         if(err) return err;
         res.json(donations);
-    })
+    }).populate('user event')
 });
 
 router.get('/find/:id',function(req,res){

@@ -60,7 +60,7 @@ export class SignupFromComponent implements OnInit {
       response => console.log("Sign up succeed"),
       error => console.log("Failed to signup the new user")
     );
-    this.router.navigate(['/home']);
+    this.router.navigate(['/user_mng']);
   }
   
 

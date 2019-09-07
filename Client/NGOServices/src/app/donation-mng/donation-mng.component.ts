@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DonationService } from '../donation.service';
+import { Router } from '@angular/router';
 //TODO Need to import/create a service for donation management
 @Component({
   selector: 'app-donation-mng',
@@ -10,15 +12,29 @@ export class DonationMngComponent implements OnInit {
   public donations = [];
   public errorMsg;
 
-  constructor() { }
+  constructor(private donationService : DonationService , private router :Router) { }
 
   ngOnInit() {
-    //this.displayDonations();
+    this.getDonationsList();
+    // console.log(this.donations);
   }
 
-  displayDonations()
-  {
-    //TODO populate donations array from service.
+  getDonationsList(){
+    if (localStorage.getItem('token') != null) {
+      this.donationService.getAllDonations().subscribe(
+        (donationsList) => {
+          this.donations = donationsList
+          console.log(this.donations);
+        },
+        (error) => {
+          this.errorMsg = error;
+          this.router.navigate(['/signin']);
+        },
+        () => console.log("Donations Loaded Successfully")
+      );
+    } else {
+      this.router.navigate(['/signin']);
+    }
   }
 
 }
