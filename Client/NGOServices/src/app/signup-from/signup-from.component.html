@@ -6,7 +6,7 @@
     </div>
 
     <label for="firstName" class="twidth"><b>* First Name</b> </label>
-    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name" class="twidth">
+    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signupForm.controls.firstName?.valid && (signupForm.controls.firstName?.dirty || 
                 signupForm.controls.firstName?.touched)">

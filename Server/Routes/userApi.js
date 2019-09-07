@@ -45,7 +45,6 @@ router.post('/signup', function(req,res){
                 address : req.body.address,
                 cma : req.body.cma,
                 isAdmin : req.body.isAdmin,
-                // userName : req.body.userName,
                 password : hashedPassword,
                 cart : req.body.cart,
                 donations : req.body.donations
@@ -77,7 +76,11 @@ router.post('/signin',function(req,res){
             if(same){
                 // the token will be generated using email and id as payload ( cannot understand 'secret')
                 const JWTtoken = jwt.sign({
-                    email: u.email
+                    email: u.email,
+                    role : u.isAdmin,
+                    id : u._id,
+                    firstName: u.firstName,
+                    lastName: u.lastName
                 },
                 'secret',
                 {
@@ -85,8 +88,7 @@ router.post('/signin',function(req,res){
                 });
                 let checkAdmin = u.isAdmin;
                 // return 200 OK and display message and return the JWT token created
-                return res.status(200).json({success:'JWT has been created' , token: JWTtoken , isAdmin: checkAdmin,
-                                    firstName: u.firstName,lastName: u.lastName , user : u });
+                return res.status(200).json({success:'JWT has been created' , token: JWTtoken , isAdmin: checkAdmin });
             }else if(!same){
                 return res.status(401).json({failed: u.password});
             }

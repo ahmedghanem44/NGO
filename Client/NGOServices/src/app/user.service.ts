@@ -11,6 +11,8 @@ export class UserService {
 
   private url : string = "http://localhost:5000/users";
 
+  public currentUser ;
+
   constructor(private http : HttpClient, private router: Router) { }
 
   getAllUsers(): Observable<IUser[]> {
@@ -43,13 +45,19 @@ export class UserService {
     return this.http.delete<IUser>(this.url+ '/delete/' + id);
   }
 
-  singin(user){
-   return this.http.post<any>(this.url+'/signin' , user);
-  }
+  // singin(user){
+  //  return this.http.post<any>(this.url+'/signin' , user);
+  // }
+
+  singin(user:any):Observable<any>{
+    return this.http.post<any>(this.url+'/signin' , user);
+   }
 
   signout(){
     localStorage.removeItem('token');
     localStorage.removeItem('name');
+    localStorage.removeItem('currentUser');
+    localStorage.clear();
     this.router.navigate(['/home']);
   }
 
@@ -65,9 +73,9 @@ export class UserService {
     return localStorage.getItem('name');
   }
 
-  getUser():any{
-    return localStorage.getItem('user');
-  }
+  // getCurrentUser():Observable<IUser>{
+  //   return  JSON.parse(JSON.stringify(localStorage.getItem('user')));
+  // }
 
 
 }

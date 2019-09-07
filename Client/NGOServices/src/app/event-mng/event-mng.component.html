@@ -1,0 +1,27 @@
+<!-- <app-nav-bar></app-nav-bar> -->
+<div class="container">
+    <h1>Event Management</h1>
+</div>
+
+<div>
+<h2>List of Events</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Is active</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let event of events">
+            <td>{{event.name}}</td>
+            <td>{{event.isActive}}</td>
+            </tr> -->
+        <tr>
+            <td>Run for orphans</td>
+            <td>True</td>
+        </tr>    
+        </tbody>
+</table>
+</div>
+<button routerLink="/add_event">Add Event</button>

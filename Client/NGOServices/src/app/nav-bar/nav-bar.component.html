@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <a mat-button [routerLink]="'/home'"><h1>NGO</h1></a>
+          <span class="menu-spacer"></span>
+          <div>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a mat-button [routerLink]="'/user_mng'">User Management</a>
+            <a mat-button [routerLink]="'/donation_mng'"> Donation Management </a>
+            <a mat-button [routerLink]="'/event_mng'"> Event Management </a>
+            <a mat-button [routerLink]="'/user_view'">User View</a> 
+            <a mat-button (click)='logout()'style="position: absolute; right: 60px;">Logout</a>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>

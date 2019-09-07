@@ -5,8 +5,8 @@
             <p>Fields marked with * are required</p>
         </div>
     
-        <label for="firstName" class="twidth"><b>* First Name</b> </label>
-        <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name" class="twidth">
+        <label for="firstName"><b>* First Name</b> </label>
+        <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="Enter First Name">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span *ngIf="!profileForm.controls.firstName?.valid && (profileForm.controls.firstName?.dirty || 
         profileForm.controls.firstName?.touched)">

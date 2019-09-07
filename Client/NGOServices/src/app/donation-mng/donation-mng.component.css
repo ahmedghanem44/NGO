@@ -1,0 +1,21 @@
+table, th, td {
+    border: 2px solid blueviolet;
+  }
+table 
+{
+    border-collapse: collapse;
+    /* width: 100%; */
+}
+th
+{
+    text-align: center;
+}
+td
+{
+    text-align: left;
+}
+th, td
+{
+    padding: 15px;
+}  
+  

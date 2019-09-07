@@ -20,7 +20,7 @@ export class EventsForDonationComponent implements OnInit {
   ngOnInit() {
     if(this.userService.isSignedIn()){
       this.eventService.getAllEvents().subscribe(
-        (activeEvents) => this.events = activeEvents,
+        (events) => this.events = events,
         (error) => this.errorMsg = error,
         () => console.log("list of active events loaded successfully")
       );
