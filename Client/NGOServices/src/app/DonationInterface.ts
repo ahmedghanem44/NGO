@@ -1,5 +1,5 @@
-import {IEvent} from './EventInterface';
-import { IUser } from './UserInterface';
+// import {IEvent} from './EventInterface';
+// import { IUser } from './UserInterface';
 
 export interface IDonation{
     user : String,

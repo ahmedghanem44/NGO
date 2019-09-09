@@ -5,7 +5,7 @@ const port = 5000;
 const db = 'mongodb://localhost:27017/ngo';
 
 const donations = require('./Routes/donationApi');
-// const carts = require('./Routes/cartApi');
+const carts = require('./Routes/cartApi');
 const addresses = require('./Routes/addressApi');
 const events = require('./Routes/eventApi');
 const users = require('./Routes/userApi');
@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 
 
 app.use('/donations',donations);
-// app.use('/cart',carts);
+app.use('/cart',carts);
 // app.use('/address',addresses);
 app.use('/events',events);
 app.use('/users',users);

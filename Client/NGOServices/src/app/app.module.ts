@@ -37,6 +37,7 @@ import { AdminGuardService } from './admin-guard.service';
 import { NavBarUserComponent } from './nav-bar-user/nav-bar-user.component';
 import { SignupFormAdminComponent } from './signup-form-admin/signup-form-admin.component';
 import { NavBarHomeComponent } from './nav-bar-home/nav-bar-home.component';
+import { CartService } from './cart.service';
 
 
 
@@ -179,7 +180,7 @@ import { NavBarHomeComponent } from './nav-bar-home/nav-bar-home.component';
 
     ])
   ],
-  providers: [UserService,EventService,DonationService,AdminGuardService],
+  providers: [UserService,EventService,DonationService,AdminGuardService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
