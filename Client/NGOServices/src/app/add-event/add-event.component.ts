@@ -12,6 +12,7 @@ export class AddEventComponent implements OnInit {
   public isActive : Boolean;
   public eventForm : FormGroup;
   public errorMsg;
+  public admin = localStorage.getItem('isAdmin');
 
   constructor(private eventService: EventService, private fb :FormBuilder, private router: Router) { }
 

@@ -18,7 +18,7 @@
     <br>
 
     <label for="password"><b>* Password</b></label>
-    &nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="password" formControlName="password"
+    &nbsp;&nbsp;&nbsp;<input type="password" class="form-control" name="password" formControlName="password"
         placeholder="Enter Your Password">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <span *ngIf="!signinForm.controls.password?.valid && (signinForm.controls.password?.dirty || 

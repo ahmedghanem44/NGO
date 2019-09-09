@@ -115,7 +115,8 @@ import { CartService } from './cart.service';
       },
       {
         path: 'signupadmin', // nemo
-        component: SignupFormAdminComponent
+        component: SignupFormAdminComponent,
+        canActivate : [AdminGuardService]
       },
       {
         path: 'profile', // nemo
