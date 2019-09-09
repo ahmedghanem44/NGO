@@ -1,6 +1,63 @@
-<span *ngIf="admin == 'true' ; else userBlock" >
-        <app-nav-bar></app-nav-bar>
-    </span>
-    <ng-template #userBlock>
-           <app-nav-bar-user></app-nav-bar-user>
-    </ng-template>
+<span *ngIf="admin == 'true' ; else userBlock">
+       <app-nav-bar></app-nav-bar>
+</span>
+<ng-template #userBlock>
+       <app-nav-bar-user></app-nav-bar-user>
+</ng-template>
+
+<body align="center">
+
+       <div class="container">
+              <h1>Cart</h1>
+              <p></p>
+              <!-- <h2 class="container">List Of Donations</h2> -->
+              <table class="table table-hover" align="center">
+                     <thead>
+                            <tr>
+                                   <th>Event Name</th>
+                                   <!-- <th>Quantity</th> -->
+                                   <th>Amount</th>
+                                   <!-- <th>Total</th> -->
+                                   <!-- <th>Edit</th> -->
+                                   <th>Remove</th>
+                            </tr>
+                     </thead>
+                     <tbody>
+                            <tr *ngFor="let item of userCart">
+                                   <td>{{item.event.eventName}}</td>
+                                   <!-- <td>1</td> -->
+
+
+                                   <td *ngIf="!edit ; else editBlock">{{item.amount}}</td>
+                                   <ng-template #editBlock>
+                                          <td><input type="number" value="{{item.amount}}" size="4"></td>
+                                   </ng-template>
+
+                                   <!-- <td>{{item.amount * 1}}</td> -->
+                                   <td width="250"><button (click)="onSelect(item._id)"
+                                                 class="delbutton">Remove</button></td>
+                                   <!-- <td><input type="checkbox" id="admin" name="admin" value="true"> -->
+                            </tr>
+
+                     </tbody>
+              </table>
+       </div>
+       <p></p>
+       <p></p>
+       <br>
+       <span *ngIf="!edit ; else saveBlock" width="150">
+              <button class="addbutton" (click)="onEditClick()">Update Cart</button>
+       </span>
+       <ng-template #saveBlock>
+              <button class="addbutton" (click)="onSaveClick(item._id)">Save</button>
+       </ng-template>
+       <!-- <br>
+       <p></p>
+       <p></p> -->
+       &nbsp;&nbsp;&nbsp;
+       <button (click)="emptyCart()" class="emptybutton">Empty Cart</button>&nbsp;&nbsp;
+       <button routerLink="/startdonation" class="addbutton">Add Donation</button>&nbsp;&nbsp;&nbsp;
+       <button (click)="saveToDonations()" class="addbutton">Checkout</button>
+       
+       
+</body>

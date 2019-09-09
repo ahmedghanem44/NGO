@@ -54,7 +54,7 @@ export class MakeDonationComponent implements OnInit {
       isRecurring: this.isRecurring
     };
 
-    this.cartService.addDonation(donation).subscribe(
+    this.cartService.addCartItem(donation).subscribe(
       data => {
         console.log("Donation added"),
         this.router.navigate(['/startdonation'])

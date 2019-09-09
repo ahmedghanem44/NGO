@@ -32,4 +32,8 @@ export class DonationService {
   removeDonation(id:string):Observable<IDonation>{
     return this.http.delete<IDonation>(this.url+ '/delete/' + id);
   }
+
+  saveDonationsBulk(donations:IDonation[]):Observable<IDonation[]>{
+    return this.http.post<IDonation[]>(this.url +'/savedonations',donations);
+  }
 }

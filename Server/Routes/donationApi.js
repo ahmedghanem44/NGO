@@ -41,4 +41,11 @@ router.put('/update/:id',function(req,res){
     })
 });
 
+router.post('/savedonations',function(req,res){
+    donation.insertMany(req.body,function(err,donations){
+        if(err) return err;
+        res.json(donations);
+    })
+});
+
 module.exports = router;

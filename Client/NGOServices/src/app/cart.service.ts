@@ -12,25 +12,33 @@ export class CartService {
 
   constructor(private http : HttpClient) { }
 
-  getAllDonations(): Observable<ICart[]> {
+  getAllCartsItems(): Observable<ICart[]> {
     return this.http.get<ICart[]>(this.url + '/findAll');
   }
 
-  getDonationById(id:string):Observable<ICart>{
+  getCartItemById(id:string):Observable<ICart>{
     return this.http.get<ICart>(this.url +'/find/'+id);
   }
 
-  addDonation(donation:ICart): Observable<ICart>{
+  addCartItem(donation:ICart): Observable<ICart>{
     return this.http.post<ICart>(this.url + '/add' , donation);
   }
 
   // need to know how to get id from the the user object
-  updateDonation(id:string,donation:ICart):Observable<ICart>{
+  updateCartItem(id:string,donation:ICart):Observable<ICart>{
     return this.http.put<ICart>(this.url +'/update/' + id , donation);
   }
 
-  removeDonation(id:string):Observable<ICart>{
+  removeCartItem(id:string):Observable<ICart>{
     return this.http.delete<ICart>(this.url+ '/delete/' + id);
+  }
+
+  findUserCart(userid:string):Observable<ICart[]>{
+    return this.http.get<ICart[]>(this.url + '/findbyuser/'+userid);
+  }
+
+  removeUserCart(userid:string):Observable<ICart[]>{
+    return this.http.delete<ICart[]>(this.url + '/deleteusercart/'+ userid);
   }
 
 }

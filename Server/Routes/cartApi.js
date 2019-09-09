@@ -42,4 +42,18 @@ router.delete('/delete/:id' , function(req,res){
     })
 });
 
+router.get('/findbyuser/:userid',function(req,res){
+    cart.find({user:{_id: req.params.userid}},function(err,cart){
+        if(err) return err;
+        res.json(cart);
+    }).populate('user event')
+});
+
+router.delete('/deleteusercart/:userid',function(req,res){
+    cart.deleteMany({user:{_id: req.params.userid}},function(err,cart){
+        if(err) return err;
+        res.json(cart);
+    })
+});
+
 module.exports = router;
