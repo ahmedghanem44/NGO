@@ -2,8 +2,8 @@ import {IEvent} from './EventInterface';
 import { IUser } from './UserInterface';
 
 export interface IDonation{
-    user : IUser,
-    event : IEvent,
+    user : String,
+    event : String,
     amount : Number,
     dateOfDonation : Date,
     isRecurring : Boolean

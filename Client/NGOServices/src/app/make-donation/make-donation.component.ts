@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DonationService } from '../donation.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { IDonation } from '../DonationInterface';
 import { IUser } from '../UserInterface';
 import { UserService } from '../user.service';
 import { IEvent } from '../EventInterface';
 import { EventService } from '../event.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-make-donation',
@@ -22,11 +23,13 @@ export class MakeDonationComponent implements OnInit {
   private event : IEvent;
   private errorMsg;
   private eventId;
+  private amount ;
+  private isRecurring ;
   
             
 
   constructor(private donationService : DonationService, private fb:FormBuilder,private userService:UserService,
-    private eventService:EventService,private activatedRoute : ActivatedRoute) { }
+    private eventService:EventService,private activatedRoute : ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
     console.log(this.id);
@@ -38,24 +41,48 @@ export class MakeDonationComponent implements OnInit {
     }
   }
 
-  onSubmit(){
-    this.userService.getUserById(this.id).subscribe(
+  getDonator(){
+      this.userService.getUserById(this.id).subscribe(
       data => this.user = data,
       error => this.errorMsg = error,
       ()=>console.log("got the user")
     );
+  }
+
+  getEvent(){
     this.eventId = this.activatedRoute.snapshot.queryParams["id"];
     this.eventService.getEventById(this.eventId).subscribe(
       data => this.event = data,
       error => this.errorMsg = error,
       ()=>console.log("got the event")
     );
-    let donation : IDonation = {
-      user: this.user,
-      event: this.event,
+  }
 
-    }
-    this.donationService.addDonation()
+  onSubmit(){
+    // this.getDonator();
+    // this.getEvent();
+    this.amount = this.donationForm.get('amount').value;
+    this.isRecurring = this.donationForm.get('isRecurring').value;
+
+    let donation : IDonation = {
+      user: this.id,
+      event: this.activatedRoute.snapshot.queryParams["id"],
+      amount: this.amount,
+      dateOfDonation: new Date(),
+      isRecurring: this.isRecurring
+    };
+
+    this.donationService.addDonation(donation).subscribe(
+      data => {
+        console.log("Donation added"),
+        this.router.navigate(['/startdonation'])
+      },
+      error => {
+        this.errorMsg = error,
+        this.router.navigate(['/error'])
+      },
+      ()=> console.log("Adding donation completed")
+    )
   }
 
 }
