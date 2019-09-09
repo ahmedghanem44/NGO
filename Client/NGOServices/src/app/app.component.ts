@@ -14,6 +14,8 @@ export class AppComponent implements OnInit,OnChanges{
   // public userName: string = localStorage.getItem('name'); 
   // public errorMsg: string;
   public userName : string ;
+  public admin = localStorage.getItem('isAdmin');
+
 
   constructor(
   private userService: UserService,

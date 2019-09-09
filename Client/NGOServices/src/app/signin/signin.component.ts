@@ -34,6 +34,8 @@ export class SigninComponent implements OnInit {
             let payload = atob(token.split('\.')[1]);
             let userinfo = JSON.parse(payload);
             localStorage.setItem('userName', userinfo.firstName +" " +userinfo.lastName);
+            localStorage.setItem('isAdmin',response.isAdmin);
+            localStorage.setItem('id',userinfo.id);
             // console.log(payload);
             // console.log(userinfo.id);
             this.userService.getUserById(userinfo.id).subscribe(
@@ -43,7 +45,10 @@ export class SigninComponent implements OnInit {
                 // console.log(this.userService.currentUser.firstName);
                 // this.userService.userExists = true ;            
               },
-              error => this.errorMsg = error
+              error => {
+                this.errorMsg = error;
+                this.router.navigate(['/error']);
+              }
             );
           }
           this.isAdmin = response.isAdmin;
@@ -58,7 +63,7 @@ export class SigninComponent implements OnInit {
       error => {
         console.log("Failed to sign in ");
         console.log(error);
-        this.router.navigate(['/signup'])
+        this.router.navigate(['/error'])
       });
   }
 

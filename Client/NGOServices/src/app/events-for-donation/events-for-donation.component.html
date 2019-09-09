@@ -1,15 +1,23 @@
-<h1>List of active event</h1>
-
-
+<span *ngIf="admin == 'true' ; else userBlock" >
+        <app-nav-bar></app-nav-bar>
+    </span>
+    <ng-template #userBlock>
+           <app-nav-bar-user></app-nav-bar-user>
+    </ng-template>
+    
+<body align="center">
+    <h1>List of active event</h1>
+    <p></p>
+    <h3>Please choose the event you want to donate for</h3>
     <span *ngFor="let event of events">
         <br><br>
         <span *ngIf="event.isActive ; else elseBlock">
-            <button class="activebtn">{{event.eventName}}</button>
-            <br><br>
+            <button class="activebtn" routerLink="/makedonation" [queryParams]="{id: event._id}">{{event.eventName}}</button>
+            
         </span>
         <ng-template #elseBlock>
-                <button class="inactivebtn" disabled="true">{{event.eventName}}</button>
-                <br><br>
+            <button class="inactivebtn" disabled="true">{{event.eventName}}</button>
+            
         </ng-template>
-    <span>
-
+        </span>
+</body>

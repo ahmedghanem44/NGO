@@ -1,8 +1,14 @@
+<span *ngIf="admin == 'true' ; else userBlock" >
+        <app-nav-bar></app-nav-bar>
+    </span>
+    <ng-template #userBlock>
+           <app-nav-bar-user></app-nav-bar-user>
+    </ng-template>
 <body align="center">
     <div class="container">
         <h1>Event Management</h1>
         <p></p>
-        <h2>List of Events</h2>
+        <h2>List Of Events</h2>
         <table class="table table-hover" align="center">
             <thead>
                 <tr>
@@ -20,18 +26,19 @@
                     <ng-template #activeBlock>
                         <td>Inactive</td>
                     </ng-template>
-                    <td><button routerLink="/editevent" [queryParams]="{id: event._id}"
+                    <td width="150"><button class="button" routerLink="/editevent" [queryParams]="{id: event._id}"
                             routerLinkActive="active">Edit</button></td>
-                    <td><button (click)="onSelect(event._id)">Remove</button></td>
-                    <td *ngIf="!event.isActive ; else activeBtn">
-                        <button (click)="setStatus(event._id)">Activate</button>
+                    <td width="250"><button class="delbutton" (click)="onSelect(event._id)">Remove</button></td>
+                    <td *ngIf="!event.isActive ; else activeBtn" td width="250">
+                        <button (click)="setStatus(event._id)" class="button">Activate</button>
                     </td>
                     <ng-template #activeBtn>
-                           <td><button (click)="setStatus(event._id)">InActivate</button></td> 
+                           <td td width="320"><button class="button" (click)="setStatus(event._id)">InActivate</button></td> 
                     </ng-template>
                 </tr>
             </tbody>
         </table>
     </div>
-    <button routerLink="/add_event" class="signupbtn">Add Event</button>
+    <p></p>
+    <button routerLink="/add_event" class="addbutton">Add Event</button>
 </body>

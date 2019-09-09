@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewInit, AfterContentInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { UserService } from '../user.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from './PasswordValidator';
+
 
 @Component({
   selector: 'app-admin-user-edit',
@@ -34,9 +35,11 @@ export class AdminUserEditComponent implements OnInit {
   public errorMsg;
   public id ;
   public admin:boolean;
+  public isAdmin = localStorage.getItem('isAdmin');
 
   constructor(private activatedRoute : ActivatedRoute, private userService:UserService,
                 private fb : FormBuilder, private router :Router) { }
+  
 
   ngOnInit() {
     if (localStorage.getItem('token') != null){
@@ -81,7 +84,10 @@ export class AdminUserEditComponent implements OnInit {
        }
        console.log(this.user.cma);
      },
-     error => this.errorMsg = error,
+     error => {
+       this.errorMsg = error,
+       this.router.navigate(['/error'])
+     },
      ()=> console.log("DONE")
    )
   }
@@ -89,9 +95,13 @@ export class AdminUserEditComponent implements OnInit {
   onSubmit(){
     this.userService.updateUser(this.id,this.profileForm.value).subscribe(
       response => console.log("Editing user profile succeed"),
-      error => console.log("Failed to edit the user profile")
+      error => {
+        console.log("Failed to edit the user profile");
+        this.router.navigate(['/error']);
+      }
     );
     this.router.navigate(['/user_mng']);
+    
   }
 
 }

@@ -31,7 +31,7 @@ export class AddEventComponent implements OnInit {
     error => {
       console.log("Failed to add event");
       console.log(error);
-      this.router.navigate(['/event_mng'])
+      this.router.navigate(['/error'])
     });
 }
 

@@ -32,6 +32,11 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { UserMngComponent } from './user-mng/user-mng.component';
 import { HomeInComponent } from './home-in/home-in.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { ErrorComponent } from './error/error.component';
+import { AdminGuardService } from './admin-guard.service';
+import { NavBarUserComponent } from './nav-bar-user/nav-bar-user.component';
+import { SignupFormAdminComponent } from './signup-form-admin/signup-form-admin.component';
+import { NavBarHomeComponent } from './nav-bar-home/nav-bar-home.component';
 
 
 
@@ -61,7 +66,11 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     ListOfEventsComponent,
     LoginComponent,
     HomeInComponent,
-    EditEventComponent
+    EditEventComponent,
+    ErrorComponent,
+    NavBarUserComponent,
+    SignupFormAdminComponent,
+    NavBarHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +96,7 @@ import { EditEventComponent } from './edit-event/edit-event.component';
       },
       {
         path: 'home', // nemo
-        component:LoginComponent
+        component:HomeComponent
       },
       {
         path: 'homein', // nemo
@@ -95,11 +104,33 @@ import { EditEventComponent } from './edit-event/edit-event.component';
       },
       {
         path: 'editevent', // nemo
-        component:EditEventComponent
+        component:EditEventComponent,
+        canActivate : [AdminGuardService]
+      },
+      {
+        path: 'error', // nemo
+        component:ErrorComponent
+      },
+      {
+        path: 'startdonation', // nemo
+        component:EventsForDonationComponent
+      },
+      {
+        path: 'makedonation', // nemo
+        component:MakeDonationComponent
+      },
+      {
+        path: 'signupadmin', // nemo
+        component: SignupFormAdminComponent
+      },
+      {
+        path: 'profile', // nemo
+        component: UserProfileComponent
       },
       {
         path: 'user_mng',
-        component: UserMngComponent
+        component: UserMngComponent,
+        canActivate : [AdminGuardService]
       },
       {
         path: 'admin',
@@ -107,7 +138,8 @@ import { EditEventComponent } from './edit-event/edit-event.component';
       },
       {
         path: 'donation_mng',
-        component: DonationMngComponent
+        component: DonationMngComponent,
+        canActivate : [AdminGuardService]
       },
       {
         path: 'make_donation',
@@ -123,7 +155,8 @@ import { EditEventComponent } from './edit-event/edit-event.component';
       },
       {
         path: 'add_event',
-        component: AddEventComponent
+        component: AddEventComponent,
+        canActivate : [AdminGuardService]
       },
       {
         path: 'signup',
@@ -131,11 +164,13 @@ import { EditEventComponent } from './edit-event/edit-event.component';
       },
       {
         path: 'event_mng',
-        component: EventMngComponent
+        component: EventMngComponent,
+        canActivate : [AdminGuardService]
       },
       {
         path: 'admin-user-edit',
-        component: AdminUserEditComponent
+        component: AdminUserEditComponent,
+        canActivate : [AdminGuardService]
       },
       {
         path: '',
@@ -144,7 +179,7 @@ import { EditEventComponent } from './edit-event/edit-event.component';
 
     ])
   ],
-  providers: [UserService,EventService,DonationService],
+  providers: [UserService,EventService,DonationService,AdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

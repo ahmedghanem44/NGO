@@ -13,6 +13,7 @@ export class EventsForDonationComponent implements OnInit {
 
   public events = [];
   public errorMsg : string ;
+  public admin = localStorage.getItem('isAdmin');
 
   constructor(private eventService : EventService, private userService: UserService,
                 private router : Router){ }
@@ -21,8 +22,11 @@ export class EventsForDonationComponent implements OnInit {
     if(this.userService.isSignedIn()){
       this.eventService.getAllEvents().subscribe(
         (events) => this.events = events,
-        (error) => this.errorMsg = error,
-        () => console.log("list of active events loaded successfully")
+        (error) => {
+          this.errorMsg = error;
+          this.router.navigate(['/error']);
+          },
+        () => console.log("list of events loaded successfully")
       );
     }else{
       this.router.navigate(['/signin']);

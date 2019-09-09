@@ -30,7 +30,8 @@ export class UserProfileComponent implements OnInit {
   });
   public user ; 
   public errorMsg;
-  
+  public admin = localStorage.getItem('isAdmin'); 
+  // public id ; 
 
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
@@ -73,8 +74,22 @@ export class UserProfileComponent implements OnInit {
        this.user = data ;
        console.log(this.user.cma);
      },
-     error => this.errorMsg = error,
+     error =>{
+      this.errorMsg = error;
+      this.router.navigate(['/error']);
+     },
      ()=> console.log("DONE")
    )
   }
+  onSubmit(){
+    this.userService.updateUser(this.user._id,this.profileForm.value).subscribe(
+      response => console.log("Editing user profile succeed"),
+      error => {
+        console.log("Failed to edit the user profile");
+        this.router.navigate(['/error']);
+      }
+    );
+    this.router.navigate(['/homein']);
+  }
+
 }

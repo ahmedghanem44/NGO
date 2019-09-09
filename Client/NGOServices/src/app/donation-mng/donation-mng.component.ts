@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DonationService } from '../donation.service';
 import { Router } from '@angular/router';
 //TODO Need to import/create a service for donation management
@@ -7,16 +7,21 @@ import { Router } from '@angular/router';
   templateUrl: './donation-mng.component.html',
   styleUrls: ['./donation-mng.component.css']
 })
-export class DonationMngComponent implements OnInit {
+export class DonationMngComponent implements OnInit,AfterViewInit {
 
   public donations = [];
   public errorMsg;
+  public admin = localStorage.getItem('isAdmin');
 
   constructor(private donationService : DonationService , private router :Router) { }
 
   ngOnInit() {
     this.getDonationsList();
     // console.log(this.donations);
+  }
+
+  ngAfterViewInit() {
+    this.getDonationsList();
   }
 
   getDonationsList(){
@@ -28,7 +33,7 @@ export class DonationMngComponent implements OnInit {
         },
         (error) => {
           this.errorMsg = error;
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/error']);
         },
         () => console.log("Donations Loaded Successfully")
       );

@@ -12,6 +12,7 @@ export class EventMngComponent implements OnInit,AfterViewInit {
   public events = [];
   public errorMsg;
   public eventToActivate;
+  public admin = localStorage.getItem('isAdmin');
 
   constructor(private eventService: EventService, private router: Router) { }
 
@@ -25,7 +26,7 @@ export class EventMngComponent implements OnInit,AfterViewInit {
         (eventsList) => this.events = eventsList,
         (error) => {
           this.errorMsg = error;
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/error']);
         },
         () => console.log("COMPLETED")
       );
@@ -49,7 +50,7 @@ export class EventMngComponent implements OnInit,AfterViewInit {
       }, 
         (error) => {
           this.errorMsg = error;
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/error']);
         },
         () => console.log("DELETED")
       );
@@ -61,7 +62,7 @@ export class EventMngComponent implements OnInit,AfterViewInit {
       // console.log("updated: " + data.isActive);
       (error) => {
         this.errorMsg = error;
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/error']);
       },
       () => console.log("GOT : " + this.eventToActivate.eventName)
     );
@@ -80,7 +81,7 @@ export class EventMngComponent implements OnInit,AfterViewInit {
       // console.log("updated: " + data.isActive);
       (error) => {
         this.errorMsg = error;
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/error']);
       },
       () => console.log("GOT : " + this.eventToActivate)
       )

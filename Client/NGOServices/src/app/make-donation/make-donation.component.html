@@ -1,1 +1,36 @@
-<p>make-donation works!</p>
+<span *ngIf="admin == 'true' ; else userBlock">
+       <app-nav-bar></app-nav-bar>
+</span>
+<ng-template #userBlock>
+       <app-nav-bar-user></app-nav-bar-user>
+</ng-template>
+
+<form [formGroup]="donationForm" (ngSubmit)="onSubmit()" style="border:1px solid #ccc">
+       <div class="container">
+              <h1>Add Donation</h1>
+              <p>Please fill in this form to add Donation.</p>
+              <p>Fields marked with * are required</p>
+       </div>
+
+       <label for="amount"><b>* Amount Of Donation</b> </label>
+       &nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="amount" formControlName="amount"
+              placeholder="Enter Amount">
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <span *ngIf="!donationForm.controls.amount?.valid && (donationForm.controls.amount?.dirty || 
+                           donationForm.controls.amount?.touched)">
+              <small [hidden]="!donationForm.controls.amount.errors.required" class="required">
+                     <font color="red"><b>Amount is required </b></font>
+              </small>
+       </span>
+
+       <br>
+
+       <label for="isRecurring"><b>Recurring </b> </label>
+       &nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-control" name="isRecurring" formControlName="isRecurring">
+
+       <br><br>
+
+       <button [disabled]="!donationForm.valid" type="submit" class="signupbtn">Add</button>
+       <button type="reset" class="cancelbtn">Clear</button>
+
+</form>

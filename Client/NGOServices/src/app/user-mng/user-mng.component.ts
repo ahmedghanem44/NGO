@@ -1,8 +1,7 @@
-import { Component, OnInit, OnChanges, ɵɵNgOnChangesFeature, DoCheck, AfterViewInit, AfterContentChecked, AfterViewChecked, AfterContentInit } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewInit, AfterContentInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-// import { UserMngService } from './../user-mng.service'
-// import { UserA }  from '../user-a';
+
 @Component({
   selector: 'app-user-mng',
   templateUrl: './user-mng.component.html',
@@ -10,12 +9,10 @@ import { Router } from '@angular/router';
 })
 export class UserMngComponent implements OnInit,AfterViewInit {
 
-  public users = [];
-  public errorMsg;
-  //public andres;
-  // private andres = new UserA();
+  private users = [];
+  private errorMsg;
+  public admin = localStorage.getItem('isAdmin');
 
-  // constructor(private _UserServ: UserMngService ) { }
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -29,7 +26,7 @@ export class UserMngComponent implements OnInit,AfterViewInit {
         (userList) => this.users = userList,
         (error) => {
           this.errorMsg = error;
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/error']);
         },
         () => console.log("COMPLETED")
       );
@@ -46,7 +43,7 @@ export class UserMngComponent implements OnInit,AfterViewInit {
       }, 
         (error) => {
           this.errorMsg = error;
-          this.router.navigate(['/signin']);
+          this.router.navigate(['/error']);
         },
         () => console.log("DELETED")
       );
@@ -56,23 +53,5 @@ export class UserMngComponent implements OnInit,AfterViewInit {
     this.loadPage();
   }
 
-  // ngAfterContentInit() {
-  //   this.loadPage();
-  // }
-  // ngDoCheck() {
-  //   if (localStorage.getItem('token') != null) {
-  //     this.userService.getAllUsers().subscribe(
-  //       (userList) => this.users = userList,
-  //       (error) => {
-  //         this.errorMsg = error;
-  //         this.router.navigate(['/signin']);
-  //       },
-  //       () => console.log("COMPLETED")
-  //     );
-  //   } else {
-  //     this.router.navigate(['/signin']);
-  //   }
-
-  // }
 }
 

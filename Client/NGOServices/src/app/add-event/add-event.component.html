@@ -1,3 +1,10 @@
+<span *ngIf="admin == 'true' ; else userBlock" >
+    <app-nav-bar></app-nav-bar>
+</span>
+<ng-template #userBlock>
+       <app-nav-bar-user></app-nav-bar-user>
+</ng-template>
+
 <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" style="border:1px solid #ccc">
   <div class="container">
     <h1>Add Event</h1>
@@ -19,7 +26,7 @@
   <br>
 
   <label for="isActive"><b>Active </b> </label>
-  <input type="checkbox" class="form-control" name="isActive" formControlName="isActive">
+  &nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-control" name="isActive" formControlName="isActive">
 
   <br><br>
 

@@ -18,6 +18,7 @@ export class EditEventComponent implements OnInit {
   public id;
   public errorMsg;
   public active;
+  public admin = localStorage.getItem('isAdmin');
   
   constructor(private eventService: EventService, private fb :FormBuilder, private router: Router,
                 private activatedRoute : ActivatedRoute) { }
@@ -40,7 +41,10 @@ export class EditEventComponent implements OnInit {
             this.active = false;
           }
         },
-        error => this.errorMsg = error,
+        error => {
+          this.errorMsg = error;
+          this.router.navigate(['/error'])
+        },
         () => console.log("DONE")
       )
       setTimeout(() => {
@@ -58,7 +62,10 @@ export class EditEventComponent implements OnInit {
   onSubmit(){
     this.eventService.updateEvent(this.id,this.eventForm.value).subscribe(
       response => console.log("Editing event succeed"),
-      error => console.log("Failed to edit the event")
+      error => {
+        console.log("Failed to edit the event");
+        this.router.navigate(['/error']);
+      }
     );
     this.router.navigate(['/event_mng']);
   }

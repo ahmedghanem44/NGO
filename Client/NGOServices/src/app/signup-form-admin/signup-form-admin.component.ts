@@ -1,36 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-import { PasswordValidation } from './PasswordValidator';
 import { Router } from '@angular/router';
-
+import { PasswordValidation } from '../signup-from/PasswordValidator';
 
 @Component({
-  selector: 'app-signup-from',
-  templateUrl: './signup-from.component.html',
-  styleUrls: ['./signup-from.component.css']
+  selector: 'app-signup-form-admin',
+  templateUrl: './signup-form-admin.component.html',
+  styleUrls: ['./signup-form-admin.component.css']
 })
-export class SignupFromComponent implements OnInit {
+export class SignupFormAdminComponent implements OnInit {
 
   public isSubmit = 'false' ;
   
   public signupForm: FormGroup;
-  // public signupForm = new FormGroup({
-  //   firstName : new FormControl(''),
-  //   lastName : new FormControl(''),
-  //   cma : new FormControl(''),
-  //   email : new FormControl(''),
-  //   password : new FormControl(''),
-  //   phone :new FormControl(''),
-  //   street :new FormControl(''),
-  //   // street2 : [''],
-  //   zip :new FormControl(''),
-  //   city :new FormControl(''),
-  //   state : new FormControl(''),
-  //   country : new FormControl(''),
-  //   urbanization : new FormControl(''),
-  //   isAdmin : new FormControl(true)
-  // });
+
+  public admin = localStorage.getItem('isAdmin'); 
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
@@ -58,7 +43,7 @@ export class SignupFromComponent implements OnInit {
     }, {
         validator: PasswordValidation.MatchPassword // validation method
       })
-  };
+  }
 
   onSubmit() {
     
@@ -82,6 +67,5 @@ export class SignupFromComponent implements OnInit {
     );
 
   }
-
 
 }

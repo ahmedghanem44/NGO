@@ -57,6 +57,7 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('name');
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userName');
     localStorage.clear();
     this.router.navigate(['/home']);
   }

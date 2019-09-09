@@ -1,18 +1,20 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  selector: 'app-nav-bar-user',
+  templateUrl: './nav-bar-user.component.html',
+  styleUrls: ['./nav-bar-user.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarUserComponent implements OnInit {
 
   constructor(private userService : UserService, private router:Router) { }
+
+
   public userName = localStorage.getItem('userName');
   public admin = localStorage.getItem('isAdmin');
-  
+
   ngOnInit() {
     console.log(this.userName);
     // console.log(typeof this.admin);
@@ -27,5 +29,6 @@ export class NavBarComponent implements OnInit {
     this.userService.signout();
     this.router.navigate(['/signin']);
   }
+  
 
 }

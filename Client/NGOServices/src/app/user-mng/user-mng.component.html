@@ -1,10 +1,15 @@
-<!-- <app-nav-bar></app-nav-bar> -->
+<span *ngIf="admin == 'true' ; else userBlock" >
+        <app-nav-bar></app-nav-bar>
+    </span>
+    <ng-template #userBlock>
+           <app-nav-bar-user></app-nav-bar-user>
+    </ng-template>
 <body align="center">   
 
 <div class="container">
     <h1>User Managment</h1>
 <p></p>
-<h2 class="container">List of users</h2>
+<h2 class="container">List Of Users</h2>
 <table class="table table-hover" align="center">
     <thead>
         <tr>
@@ -19,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users" >
             <td>{{user.firstName}}</td>
             <td>{{user.lastName}}</td>
             <td>{{user.email}}</td>
@@ -27,8 +32,8 @@
             <ng-template #userBlock>
                 <td>User</td>
             </ng-template>
-            <td><button routerLink="/admin-user-edit" [queryParams]="{id: user._id}"  routerLinkActive="active" >Edit</button></td>
-            <td><button (click)="onSelect(user._id)">Remove</button></td>
+            <td width="150"><button class="button" routerLink="/admin-user-edit" [queryParams]="{id: user._id}"  routerLinkActive="active" >Edit</button></td>
+            <td width="250"><button (click)="onSelect(user._id)" class="delbutton">Remove</button></td>
             <!-- <td><input type="checkbox" id="admin" name="admin" value="true"> -->
         </tr>
         <!-- <tr>
@@ -43,5 +48,7 @@
     </tbody>
 </table>
 </div>
-<button routerLink="/signup" class="signupbtn">Add User</button>
+<p></p>
+<p></p>
+<button routerLink="/signupadmin" class="addbutton">Add User</button>
 </body>
