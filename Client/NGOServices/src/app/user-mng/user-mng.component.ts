@@ -16,7 +16,8 @@ export class UserMngComponent implements OnInit,AfterViewInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.loadPage();
+    setTimeout(()=>this.loadPage(),300);
+    
 
   }
 
@@ -36,8 +37,12 @@ export class UserMngComponent implements OnInit,AfterViewInit {
   }
 
   onSelect(id){
+    // if(window.confirm("Are you sure you want to remove this user?")){ // same as window.confirm("")
+    if(window.confirm("Are you sure you want to remove this user?")){
+      
     this.userService.removeUser(id).subscribe(
       (data) =>{
+        alert("User has been successfully removed")
         console.log("User Deleted: " + data);
         this.loadPage();
       }, 
@@ -47,6 +52,7 @@ export class UserMngComponent implements OnInit,AfterViewInit {
         },
         () => console.log("DELETED")
       );
+  }
   }
 
   ngAfterViewInit() {

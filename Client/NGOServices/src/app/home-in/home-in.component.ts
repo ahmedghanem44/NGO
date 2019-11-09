@@ -18,4 +18,10 @@ export class HomeInComponent implements OnInit {
     }
   }
 
+  // onClick(){
+  //   let div = document.getElementById("div");
+  //   let element = document.getElementById("test");
+  //   div.removeChild(element);  
+  // }
+
 }
